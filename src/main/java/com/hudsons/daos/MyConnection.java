@@ -6,6 +6,8 @@
 package com.hudsons.daos;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,9 +20,12 @@ public class MyConnection {
     public static Connection getInstance() {
         if (CONNECTION_INSTANCE == null) {
             try {
-                CONNECTION_INSTANCE = DriverManager.getConnection("jdbc:postgresql://localhost:5432/hudsons", "daniel", "12345");
+                Class.forName("org.postgresql.Driver");
+                CONNECTION_INSTANCE = DriverManager.getConnection("jdbc:postgresql://localhost:54320/hudsons", "postgres", "12345");
             } catch (SQLException ex) {
-                assert false : "Conexión a base de datos fallida";
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(MyConnection.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return CONNECTION_INSTANCE;

@@ -19,6 +19,14 @@ public class Burger {
         
     }
 
+    public Burger(int id, float price, String name) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
